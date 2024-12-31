@@ -17,7 +17,7 @@ export function LibraryFlashcardProvider({ children }) {
                     const data = await res.json();
                     setLibraryFlashcards(data);
                 } else {
-                    alert('Failed to fetch flashcards');
+                    console.log('Failed to fetch Library flashcards');
                 }
             } catch (error) {
                 console.error('Error fetching flashcards:', error);
