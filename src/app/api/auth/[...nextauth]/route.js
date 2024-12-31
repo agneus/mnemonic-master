@@ -6,14 +6,26 @@ export const authOptions = {
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            authorization: {
+                params: { scope: "read:user user:email" },
+            },
         }),
     ],
+    secret: process.env.NEXTAUTH_SECRET,  // Ensure this exists in Vercel
     pages: {
         signIn: '/signin',  // Optional: Custom sign-in page
     },
     callbacks: {
+        async jwt({ token, user }) {
+            // Attach user ID on first sign-in
+            if (user) {
+                token.id = user.id;
+            }
+            return token;
+        },
         async session({ session, token }) {
-            session.user.id = token.sub;  // Attach user ID to session
+            // Attach token ID to session for easy retrieval
+            session.user.id = token.id;
             return session;
         },
     },
