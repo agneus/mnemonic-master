@@ -32,7 +32,7 @@ export default function FlashcardContainer() {
                     const data = await response.json();
                     setFlashcards(data);
                 } else {
-                    console.error("Failed to fetch flashcards.");
+                    console.log("Failed to fetch flashcards.");
                 }
             } catch (error) {
                 console.error("Fetch error:", error);
