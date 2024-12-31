@@ -21,7 +21,7 @@ export default function Home() {
 
     return (
         <main className="space-y-10 max-w-4xl mx-auto p-6">
-            <h1 className="text-4xl font-bold text-center">Flashcard Generator</h1>
+            <h1 className="text-4xl font-bold text-center">Mnemonic Master</h1>
             
             {/* Form to Select Language and Topic */}
             <Form />

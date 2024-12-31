@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mnemonic Master
+
+Mnemonic Master is an AI-powered flashcard generator and quiz application. This project allows users to generate vocabulary flashcards with mnemonics, save them to a personal library, and take quizzes to test their knowledge.
+
+## Features
+
+- **Flashcard Generation**: Generate vocabulary flashcards with mnemonics based on selected language and topic.
+- **User Authentication**: Sign in with GitHub to save and manage your flashcards.
+- **Flashcard Library**: Save generated flashcards to your personal library.
+- **Quiz Mode**: Test your knowledge with quizzes based on your saved flashcards.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+
+## Tech Stack
+
+- **Frontend**: React, Next.js, Tailwind CSS
+- **Backend**: Next.js API routes, Prisma ORM
+- **Database**: PostgreSQL
+- **Authentication**: NextAuth.js with GitHub provider
+- **AI Integration**: Gemini 1.5 Flash
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v16 or higher)
+- PostgreSQL database
+- GitHub OAuth app for authentication
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```sh
+   git clone https://github.com/yourusername/mnemonic-master.git
+   cd mnemonic-master
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```sh
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   Create a `.env` file in the root directory and add the following variables:
 
-## Deploy on Vercel
+   ```env
+   DATABASE_URL=your_postgresql_database_url
+   GITHUB_CLIENT_ID=your_github_client_id
+   GITHUB_CLIENT_SECRET=your_github_client_secret
+   GEMINI_API_KEY=your_google_generative_ai_api_key
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run database migrations:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```sh
+   npx prisma migrate deploy
+   ```
+
+5. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+   The application will be available at `http://localhost:3000`.
+
+## Project Structure
+
+- [app](http://_vscodecontentref_/0): Contains the main application pages and API routes.
+- [components](http://_vscodecontentref_/1): Contains React components used throughout the application.
+- [contexts](http://_vscodecontentref_/2): Contains context providers for managing global state.
+- [lib](http://_vscodecontentref_/3): Contains utility libraries, including Prisma client.
+- [prisma](http://_vscodecontentref_/4): Contains Prisma schema and migration files.
+- [public](http://_vscodecontentref_/5): Contains static assets.
+- `styles`: Contains global CSS styles.
+
+## Usage
+
+1. **Sign In**: Sign in with your GitHub account.
+2. **Generate Flashcards**: Select a language and enter a topic to generate flashcards.
+3. **Save Flashcards**: Save generated flashcards to your personal library.
+4. **Take a Quiz**: Start a quiz based on your saved flashcards to test your knowledge.
