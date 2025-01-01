@@ -1,14 +1,23 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { redirect } from 'next/navigation';
+"use client";
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useLibraryFlashcards } from '@/contexts/LibraryFlashcardContext';
 import Library from '@/components/Library';
 
-export default async function LibraryPage() {
-    const session = await getServerSession(authOptions);
+export default function LibraryPage() {
+    const { setLibraryFlashcards } = useLibraryFlashcards();
+    const router = useRouter();
 
-    if (!session) {
-        redirect('/api/auth/signin');
-    }
+    useEffect(() => {
+        async function fetchFlashcards() {
+            const res = await fetch('/api/flashcards/list');
+            const data = await res.json();
+            setLibraryFlashcards(data);
+        }
+
+        fetchFlashcards();
+    }, [router]);
 
     return <Library />;
 }
